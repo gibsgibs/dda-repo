@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\scss\components\" />
+    <Folder Include="ClientApp\src\scss\layout\" />
     <Folder Include="ClientApp\src\scss\vendor_overrides\" />
     <Folder Include="ClientApp\src\scss\base\" />
     <Folder Include="ClientApp\src\scss\utilities\" />
