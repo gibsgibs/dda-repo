@@ -23,14 +23,8 @@ namespace ddaproj
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            try
-            {
-                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DDADB_Azure"]));
-            }
-            catch
-            {
-                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DDADB_Azure")));
-            }
+            var connectionString = Configuration["DDADB_Azure"] ?? Configuration.GetConnectionString("DDADB_Azure");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
