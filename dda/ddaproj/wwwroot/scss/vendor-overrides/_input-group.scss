@@ -1,0 +1,71 @@
+﻿@import "../../lib/bootstrap/scss/mixins/border-radius";
+
+.input-group {
+    label {
+        margin: 0;
+    }
+
+    > .input-group-prepend {
+        margin-right: 1rem;
+
+        > .input-group-text {
+            border-radius: 10rem !important;
+        }
+    }
+
+    > .form-control {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-radius: 10rem !important;
+    }
+
+    > .input-group-append {
+        margin-left: 1rem;
+
+        > button {
+            border-radius: 10rem !important;
+        }
+    }
+}
+
+@media (max-width: map-get($grid-breakpoints, "lg")) {
+    .input-group {
+
+        > .input-group-prepend {
+            width: 100%;
+            margin-right: 0;
+
+            > .input-group-text {
+                border-bottom-left-radius: 0rem !important;
+                border-bottom-right-radius: 0rem !important;
+                width: inherit;
+                border-bottom: none;
+
+                > label {
+                    width: inherit;
+                }
+            }
+        }
+
+        > .form-control:last-child {
+            border-top-left-radius: 0rem !important;
+            border-top-right-radius: 0rem !important;
+        }
+
+        > .form-control:not(:last-child) {
+            width: 100%;
+            border-radius: 0 !important;
+        }
+
+        > .input-group-append {
+            margin-left: 0;
+            width: 100%;
+
+            > button {
+                border-top-left-radius: 0rem !important;
+                border-top-right-radius: 0rem !important;
+                width: inherit;
+            }
+        }
+    }
+}
