@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20201122064809_FirstAndLastNames.cs" />
+    <Compile Remove="Data\Migrations\20201122064809_FirstAndLastNames.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201122065035_FirstAndLastNames.cs" />
+    <Compile Remove="Data\Migrations\20201122065035_FirstAndLastNames.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
@@ -15,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Models\" />
     <Folder Include="wwwroot\scss\components\" />
   </ItemGroup>
 

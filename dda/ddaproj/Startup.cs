@@ -6,6 +6,7 @@ using ddaproj.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ddaproj.Data.Models;
 
 namespace ddaproj
 {
@@ -25,7 +26,8 @@ namespace ddaproj
         {
             var connectionString = Configuration["DDADB_Azure"] ?? Configuration.GetConnectionString("DDADB_Azure");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
         }
