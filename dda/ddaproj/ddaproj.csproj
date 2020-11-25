@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20201122064809_FirstAndLastNames.cs" />
-    <Compile Remove="Data\Migrations\20201122064809_FirstAndLastNames.Designer.cs" />
-    <Compile Remove="Data\Migrations\20201122065035_FirstAndLastNames.cs" />
-    <Compile Remove="Data\Migrations\20201122065035_FirstAndLastNames.Designer.cs" />
+    <Compile Remove="Migrations\20201122064809_FirstAndLastNames.cs" />
+    <Compile Remove="Migrations\20201122064809_FirstAndLastNames.Designer.cs" />
+    <Compile Remove="Migrations\20201122065035_FirstAndLastNames.cs" />
+    <Compile Remove="Migrations\20201122065035_FirstAndLastNames.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +19,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\" />
   </ItemGroup>
 
 </Project>

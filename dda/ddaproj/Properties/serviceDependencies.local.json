@@ -3,6 +3,9 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "DDADB_Azure"
+    },
+    "secrets1": {
+      "type": "secrets.user"
     }
   }
 }
