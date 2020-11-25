@@ -18,7 +18,7 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <label asp-for="Input.Username"></label>
+                                    <label asp-for="Input.Username" class="login-label"></label>
                                 </div>
                             </div>
                             <input asp-for="Input.Username" class="form-control" />
@@ -29,7 +29,7 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <label asp-for="Input.Password"></label>
+                                    <label asp-for="Input.Password" class="login-label"></label>
                                 </div>
                             </div>
                             <input asp-for="Input.Password" class="form-control" />
@@ -44,12 +44,6 @@
                                 <span class="checkbox-box"></span>
                             </span>
                         </div>
-                        @*<div class="checkbox">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                <label asp-for="Input.RememberMe"></label>
-                            </label>
-                        </div>*@
                     </div>
                     <button class="btn btn-block btn-primary">Login</button>
                 </form>
