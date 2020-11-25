@@ -1,0 +1,89 @@
+﻿.checkbox {
+    display: flex;
+    justify-content: center;
+
+    > label {
+        display: flex;
+        align-items: center;
+        padding: $input-padding-y $input-padding-x;
+        margin-bottom: 0;
+        @include font-size($input-font-size);
+        font-weight: $font-weight-normal;
+        line-height: $input-line-height;
+        color: $input-group-addon-color;
+        text-align: center;
+        white-space: nowrap;
+        background-color: $input-group-addon-bg;
+        border: $input-border-width solid $input-group-addon-border-color;
+        margin-bottom: 0;
+        margin-right: 1rem;
+        border-radius: 10rem;
+    }
+
+    .checkbox-button {
+        position: relative;
+        display: flex;
+        cursor: pointer;
+
+        input {
+            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            height: 38px;
+            width: 38px;
+
+            &:checked ~ .checkbox-box {
+                background-color: $primary;
+                @include all-transitions(all 0.3s ease);
+
+                &:after {
+                    position: absolute;
+                    opacity: 1;
+                    left: 15px;
+                    top: 11px;
+                    width: 8px;
+                    height: 16px;
+                    border: solid #ffffff;
+                    border-width: 0 2px 2px 0;
+                    background-color: transparent;
+                    border-radius: 0;
+                    @include all-transitions(all 0.3s ease);
+                    @include all-transformations(rotate(45deg) scale(1));
+                }
+            }
+
+            &:hover ~ .checkbox-box {
+                background-color: darken($primary, 10%);
+                @include all-transitions(all 0.3s ease);
+            }
+
+            &:active ~ .checkbox-box {
+                background-color: darken($primary, 20%);
+                @include all-transitions(all 0.3s ease);
+            }
+        }
+
+        .checkbox-box {
+            height: 38px;
+            width: 38px;
+            background-color: transparent;
+            border-radius: 10rem;
+            border: $input-border-width solid $input-group-addon-border-color;
+            @include all-transitions(all 0.3s ease);
+
+            &:after {
+                position: absolute;
+                pointer-events: none;
+                content: "";
+                height: 0px;
+                width: 0px;
+                border-width: 0 3px 3px 0;
+                border-color: #ffffff;
+                opacity: 1;
+                margin: 0;
+                @include all-transitions(all 0.3s ease);
+                @include all-transformations(rotate(-90deg) scale());
+            }
+        }
+    }
+}

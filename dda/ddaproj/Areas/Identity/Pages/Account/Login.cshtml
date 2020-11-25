@@ -9,7 +9,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
-                <div class="h3 m-0">Log in</div>
+                <div class="h3 m-0">Login</div>
             </div>
             <div class="card-body">
                 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -38,18 +38,25 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
+                            <label>Remember me</label>
+                            <span class="checkbox-button">
+                                <input asp-for="Input.RememberMe" />
+                                <span class="checkbox-box"></span>
+                            </span>
+                        </div>
+                        @*<div class="checkbox">
                             <label asp-for="Input.RememberMe">
                                 <input asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                <label asp-for="Input.RememberMe"></label>
                             </label>
-                        </div>
+                        </div>*@
                     </div>
+                    <button class="btn btn-block btn-primary">Login</button>
                 </form>
             </div>
             <div class="card-footer">
                 <div class="d-flex">
                     <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="mx-auto">Register as a new user!</a>
-
                 </div>
                 <div class="d-flex">
                     <a asp-page="./ForgotPassword" class="mx-auto">Forgot your password?</a>

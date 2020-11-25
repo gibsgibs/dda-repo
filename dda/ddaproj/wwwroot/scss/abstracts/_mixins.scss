@@ -1,0 +1,19 @@
+﻿@mixin all-transitions($transition) {
+    @if($transition) {
+        -webkit-transition: $transition;
+        -moz-transition: $transition;
+        -ms-transition: $transition;
+        -o-transition: $transition;
+        transition: $transition;
+    }
+}
+
+@mixin all-transformations($transformation) {
+    @if($transformation) {
+        -webkit-transform: $transformation;
+        -moz-transform: $transformation;
+        -ms-transform: $transformation;
+        -o-transform: $transformation;
+        transform: $transformation;
+    }
+}
