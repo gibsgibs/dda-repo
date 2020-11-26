@@ -2,7 +2,7 @@
 
 namespace ddaproj.Data.Models
 {
-    public class UserClaim
+    public class CustomClaim
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
