@@ -14,7 +14,6 @@ namespace ddaproj.Pages.Admin
         {
             
         }
-
         public void OnGet()
         {
             Users = _userManager.Users.Where(u => u.Id != _superAdminId).ToList();

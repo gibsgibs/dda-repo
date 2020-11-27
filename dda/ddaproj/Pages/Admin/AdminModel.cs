@@ -1,6 +1,8 @@
 ﻿using ddaproj.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ddaproj.Pages.Admin
 {
@@ -12,6 +14,11 @@ namespace ddaproj.Pages.Admin
         {
             _userManager = userManager;
             _superAdminId = userManager.FindByNameAsync("superadmin").Result.Id;
+        }
+        public async Task<string> GetCustomClaimsAsStringAsync(ApplicationUser user)
+        {
+            var customClaims = await _userManager.GetClaimsAsync(user);
+            return string.Join(", ", customClaims.Select(customClaim => customClaim.Value));
         }
     }
 }
