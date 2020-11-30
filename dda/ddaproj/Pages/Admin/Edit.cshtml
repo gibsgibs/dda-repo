@@ -3,3 +3,71 @@
 @{
     ViewData["Title"] = "Edit User";
 }
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="h3 m-0">Edit User</div>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="border-top-0">Email</th>
+                            <td class="border-top-0">@Model.ApplicationUser.Email</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Username</th>
+                            <td>@Model.ApplicationUser.UserName</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Roles</th>
+                            <td>@Model.GetCustomClaimsAsStringAsync(Model.ApplicationUser).Result</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form asp-page-handler="UpdateUser" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="ApplicationUser.Id" />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <label asp-for="@Model.ClaimValueToAdd"></label>
+                                        </div>
+                                    </div>
+                                    <select asp-for="ClaimValueToAdd" asp-items="new SelectList(Model.GetUnobtainedClaims().Select(uc => uc.Name))" class="form-control">
+                                        <option value="">Select a role</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <label asp-for="@Model.ClaimValueToRemove"></label>
+                                        </div>
+                                    </div>
+                                    <select asp-for="ClaimValueToRemove" asp-items="new SelectList(Model.GetUsersCustomClaims(Model.ApplicationUser).Result.Select(oc => oc.Name))" class="form-control">
+                                        <option value="">Select a role</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary ml-auto" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
-﻿using ddaproj.Data.Models;
+﻿using ddaproj.Data;
+using ddaproj.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,15 +12,22 @@ namespace ddaproj.Pages.Admin
     {
         protected readonly UserManager<ApplicationUser> _userManager;
         protected readonly string _superAdminId;
-        public AdminModel(UserManager<ApplicationUser> userManager)
+        protected readonly IList<CustomClaim> _allCustomClaims;
+        public AdminModel(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _superAdminId = userManager.FindByNameAsync("superadmin").Result.Id;
+            _allCustomClaims = context.CustomClaims.ToList();
         }
         public async Task<string> GetCustomClaimsAsStringAsync(ApplicationUser user)
         {
-            var customClaims = await _userManager.GetClaimsAsync(user);
-            return string.Join(", ", customClaims.Select(customClaim => customClaim.Value));
+            var usersCustomClaims = await GetUsersCustomClaims(user);
+            return string.Join(", ", usersCustomClaims.Select(customClaim => customClaim.Name));
+        }
+        public async Task<IList<CustomClaim>> GetUsersCustomClaims(ApplicationUser user)
+        {
+            var claims = await _userManager.GetClaimsAsync(user);
+            return _allCustomClaims.Where(cc => claims.Any(c => c.Value == cc.Value)).ToList();
         }
     }
 }

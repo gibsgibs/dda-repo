@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ddaproj.Data;
 using ddaproj.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +11,8 @@ namespace ddaproj.Pages.Admin
     public class IndexModel : AdminModel
     {
         public ICollection<ApplicationUser> Users { get; private set; }
-        public IndexModel(UserManager<ApplicationUser> userManager) : base(userManager)
+        public IndexModel(UserManager<ApplicationUser> userManager, ApplicationDbContext context) 
+            : base(userManager, context)
         {
             
         }
