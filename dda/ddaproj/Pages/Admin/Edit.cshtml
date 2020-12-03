@@ -10,26 +10,7 @@
                 <div class="h3 m-0">Edit User</div>
             </div>
             <div class="card-body">
-                <table class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="border-top-0">Email</th>
-                            <td class="border-top-0">@Model.ApplicationUser.Email</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Username</th>
-                            <td>@Model.ApplicationUser.UserName</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Name</th>
-                            <td>@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Roles</th>
-                            <td>@Model.GetCustomClaimsAsStringAsync(Model.ApplicationUser).Result</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <partial name="_UserInfoPartial" model="@Model.ApplicationUser">
                 <form asp-page-handler="UpdateUser" method="post">
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <input type="hidden" asp-for="ApplicationUser.Id" />
@@ -68,6 +49,7 @@
                     </div>
                 </form>
             </div>
+            <partial name="_SuperAdminPartial" model="@Model.ApplicationUser.Id" />
         </div>
     </div>
 </div>

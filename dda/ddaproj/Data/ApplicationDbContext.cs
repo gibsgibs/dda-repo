@@ -17,9 +17,12 @@ namespace ddaproj.Data
             base.OnModelCreating(builder);
             var customClaims = new List<CustomClaim>()
             {
-                new CustomClaim { Id = 1, Name = "Board Member", Value = "BoardMember" },
-                new CustomClaim { Id = 2, Name = "Business Member", Value = "BusinessMember" },
-                new CustomClaim { Id = 3, Name = "General Member", Value = "GeneralMember" }
+                new CustomClaim { Id = 1, Name = "Admin", Value = "Admin" },
+                new CustomClaim { Id = 2, Name = "President", Value = "President" },
+                new CustomClaim { Id = 3, Name = "Vice President", Value = "VicePresident" },
+                new CustomClaim { Id = 4, Name = "Board Member", Value = "BoardMember" },
+                new CustomClaim { Id = 5, Name = "Business Member", Value = "BusinessMember" },
+                new CustomClaim { Id = 6, Name = "Individual Member", Value = "IndividualMember" }
             };
             customClaims.ForEach(claim => builder.Entity<CustomClaim>().HasData(claim));
         }

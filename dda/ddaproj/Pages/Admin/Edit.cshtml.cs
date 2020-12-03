@@ -16,8 +16,6 @@ namespace ddaproj.Pages.Admin
     public class EditModel : AdminModel
     {
         public ApplicationUser ApplicationUser { get; set; }
-        public List<string> ObtainedClaims { get; set; }
-        public List<string> UnobtainedClaims { get; set; }
         [Display(Name = "Add Role")]
         public string ClaimValueToAdd { get; set; }
         [Display(Name = "Remove Role")]
@@ -26,7 +24,7 @@ namespace ddaproj.Pages.Admin
         public EditModel(UserManager<ApplicationUser> userManager, ApplicationDbContext context) 
             : base(userManager, context)
         {
-
+            _allCustomClaims = _allCustomClaims.Where(acc => acc.Value != "Admin").ToList();
         }
         public async Task<IActionResult> OnGetAsync(string id)
         {

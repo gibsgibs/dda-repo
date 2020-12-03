@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ddaproj.Data.Models;
 using ddaproj.Utilities;
+using System;
+using ddaproj.Pages.Admin;
 
 namespace ddaproj
 {
@@ -32,6 +34,8 @@ namespace ddaproj
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.AddAuthorization(IdentityDataInitializer.SeedPolicies());
+            services.Configure<SecurityStampValidatorOptions>(options => { options.ValidationInterval = TimeSpan.Zero; });
+            services.AddTransient<AdminModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

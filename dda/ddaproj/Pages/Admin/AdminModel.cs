@@ -11,8 +11,8 @@ namespace ddaproj.Pages.Admin
     public class AdminModel : PageModel
     {
         protected readonly UserManager<ApplicationUser> _userManager;
+        protected IList<CustomClaim> _allCustomClaims;
         protected readonly string _superAdminId;
-        protected readonly IList<CustomClaim> _allCustomClaims;
         public AdminModel(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
@@ -24,7 +24,7 @@ namespace ddaproj.Pages.Admin
             var usersCustomClaims = await GetUsersCustomClaims(user);
             return string.Join(", ", usersCustomClaims.Select(customClaim => customClaim.Name));
         }
-        public async Task<IList<CustomClaim>> GetUsersCustomClaims(ApplicationUser user)
+        public virtual async Task<IList<CustomClaim>> GetUsersCustomClaims(ApplicationUser user)
         {
             var claims = await _userManager.GetClaimsAsync(user);
             return _allCustomClaims.Where(cc => claims.Any(c => c.Value == cc.Value)).ToList();
