@@ -58,13 +58,17 @@ namespace ddaproj.Pages.Admin
         }
         public async Task<IActionResult> OnPostUpdateUserAsync()
         {
+            ApplicationUser = _userManager.FindByIdAsync(ApplicationUser.Id).Result;
+            if (ApplicationUser == null)
+            {
+                ModelState.AddModelError(string.Empty, "That user does not exist.");
+            }
             if (ApplicationUser.Id == _superAdminId || ApplicationUser.Id == _userManager.GetUserId(User)) 
             {
                 ModelState.AddModelError(string.Empty, "You cannot update yourself.");
                 return Page();
             }
             if (!ModelState.IsValid) return Page();
-            ApplicationUser = _userManager.FindByIdAsync(ApplicationUser.Id).Result;
             await UpdateUserClaims(ClaimValueToAdd, ClaimOptions.Add);
             await UpdateUserClaims(ClaimValueToRemove, ClaimOptions.Remove);
             var updateUser = await _userManager.UpdateAsync(ApplicationUser);
@@ -73,7 +77,7 @@ namespace ddaproj.Pages.Admin
                 ModelState.AddModelError(string.Empty, "Failed to update user.");
                 return Page();
             }
-            return RedirectToPage("Index");
+            return Page();
         }
     }
 }
