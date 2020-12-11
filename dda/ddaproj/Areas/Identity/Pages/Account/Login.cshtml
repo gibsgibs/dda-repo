@@ -1,6 +1,7 @@
 ﻿@page
 @model LoginModel
-
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration configuration
 @{
     ViewData["Title"] = "Log in";
 }
@@ -45,6 +46,7 @@
                             </span>
                         </div>
                     </div>
+                    <div class="g-recaptcha d-flex justify-content-center mb-3" data-sitekey="@configuration["RecaptchaSettings:SiteKey"]"></div>
                     <button class="btn btn-block btn-primary">Login</button>
                 </form>
             </div>
@@ -62,4 +64,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 }
