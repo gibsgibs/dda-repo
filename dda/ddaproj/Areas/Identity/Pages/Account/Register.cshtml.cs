@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using ddaproj.Data.Models;
+using ddaproj.Security;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -85,6 +86,11 @@ namespace ddaproj.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (!ReCaptcha.IsValid(Request.Form["g-recaptcha-response"]).Result)
+            {
+                ModelState.AddModelError(string.Empty, "Failed CAPTCHA.");
+                return Page();
+            }
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Username, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName };
