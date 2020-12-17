@@ -10,6 +10,8 @@ using ddaproj.Data.Models;
 using ddaproj.Utilities;
 using System;
 using ddaproj.Pages.Admin;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ddaproj.Services;
 
 namespace ddaproj
 {
@@ -36,6 +38,8 @@ namespace ddaproj
             services.AddAuthorization(IdentityDataInitializer.SeedPolicies());
             services.Configure<SecurityStampValidatorOptions>(options => { options.ValidationInterval = TimeSpan.Zero; });
             services.AddTransient<AdminModel>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
