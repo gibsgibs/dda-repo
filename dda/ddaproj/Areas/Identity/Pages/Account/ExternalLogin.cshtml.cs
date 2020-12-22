@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ddaproj.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Policy = "SuperAdminAndHigher")]
     public class ExternalLoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
