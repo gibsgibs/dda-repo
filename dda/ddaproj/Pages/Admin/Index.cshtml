@@ -6,30 +6,32 @@
 <div class="row d-flex justify-content-center">
     <div class="col-lg-8">
         <h1>User Management</h1>
-        <table class="table table-responsive-lg table-hover">
-            <thead class="thead-dark text-light">
-                <tr>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Roles</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in @Model.Users)
-                {
+        <div class="table-responsive-lg">
+            <table class="table  table-hover">
+                <thead class="thead-dark text-light">
                     <tr>
-                        <td class="align-middle">@user.Email</td>
-                        <td class="align-middle">@user.UserName</td>
-                        <td class="align-middle">@Model.GetCustomClaimsAsStringAsync(user).Result</td>
-                        <td class="align-middle">
-                            <div class="d-flex">
-                                <a class="btn btn-sm btn-primary" asp-page="Edit" asp-route-id="@user.Id">Edit</a>
-                            </div>
-                        </td>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Roles</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var user in @Model.Users)
+                    {
+                        <tr>
+                            <td class="align-middle">@user.Email</td>
+                            <td class="align-middle">@user.UserName</td>
+                            <td class="align-middle">@Model.GetCustomClaimsAsStringAsync(user).Result</td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <a class="btn btn-sm btn-primary" asp-page="Edit" asp-route-id="@user.Id">Edit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
