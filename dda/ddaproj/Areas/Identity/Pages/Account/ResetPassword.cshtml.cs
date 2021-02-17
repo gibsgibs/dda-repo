@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using ddaproj.Security;
 
 namespace ddaproj.Areas.Identity.Pages.Account
 {
@@ -63,6 +64,11 @@ namespace ddaproj.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ReCaptcha.IsValid(Request.Form["g-recaptcha-response"]).Result)
+            {
+                ModelState.AddModelError(string.Empty, "Failed CAPTCHA.");
+                return Page();
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
